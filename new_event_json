@@ -1,0 +1,20 @@
+{
+    "name" : "MY awesome event",
+    "location" : "Park Hyarkon",
+    "info" : "The best event ever woohoo",
+    "environment" : {"OUTDOORS" / "INDOORS"},
+    "kind_of_event" : {"BACHELORETTE" / "BIRTHDAY" / "GATHERING"},
+    "date" : <string of a date>,
+    "meal_organization" : {"NON", "MULTIPLE_INCHARGES", "SINGLE_INCHARGE", "OUTSOURCE_INCHARGE"},
+    "beverage_organization" : {"NON", "MULTIPLE_INCHARGES", "SINGLE_INCHARGE", "OUTSOURCE_INCHARGE"}
+}
+{
+    "name" : "MY awesome event",
+    "location" : "Park Hyarkon",
+    "info" : "The best event ever woohoo",
+    "environment" : "OUTDOORS"
+    "kind_of_event" : "BIRTHDAY" 
+    "date" : "16-09-2020"
+    "meal_organization" : "MULTIPLE_INCHARGES"
+    "beverage_organization" : "MULTIPLE_INCHARGES"
+}

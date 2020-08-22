@@ -1,0 +1,20 @@
+{
+	"Drinks":
+	{
+		"shot_amount" : 0.1,
+		"glass_amount" : 0.20,
+		"drinks_list" : ["Vodka", "Tequila", "Gin",
+             "Whiskey", "Campari", "Arak"]
+	},
+	"Bottles": {
+		"Beer" : 2,
+		"RED_WINE" :  0.25,
+		"WHITE_WINE" : 0.25
+	},
+	"equipment":[
+	"ice",
+    "bottle opener",
+    "cups",
+    "straws"
+	]
+}

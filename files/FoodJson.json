@@ -1,0 +1,76 @@
+{
+	"MEAT" : 
+	{
+		"meat":
+		{
+			"kebab (grams)" : 100,
+			"wings (grams)" : 100,
+			"pargit (gram)" : 100,
+			"burgers (gram)" : 100,
+			"steak (gram)" : 150, 
+			"Marinated chicken (grams)" : 100
+		},
+		"vegetarian": {
+			"humus (grams)" : 90,
+			"tahini (grams)" : 50,
+			"vegetables salad" : 0.25,
+			"potato dish" : 0.20,
+			"matbucha" : 0.2,
+			"eggplants salad"  : 0.2
+		},
+		"general":{
+			"pita bread" : 2,
+			"pickles (packages)" : 0.2,
+			"water (liter)" : 1,
+			"soft drink (liter)" : 0.5,
+			"fruit salad" : 0.8,
+			"marshmallow (bag)" : 0.20,
+			"pizuchim (grams)" : 80,
+			"dessert" : 0.10
+		},
+		"equipment":[
+		"charcoals",
+		"lighter",
+		"matches",
+		"outdoor grill",
+		"grill net",
+		"NAFNAF",
+		"Sharp Knife",
+		"Chimney Starter",
+		"tongs",
+		"oil",
+		"onion",
+		"fork",
+		"skewers",
+		"paper towels",
+		"spices",
+		"ketchup",
+		"plates",
+		"cups",
+		"table wear",
+		"coffee kit"
+		]
+	},
+		"DAIRY" : 
+	{
+		"food":
+		{
+			"vegetables salad" : 0.25,
+			"cabage salad" : 0.10,
+			"quiche" : 0.25,
+			"bread" : 0.25,
+			"hard cheeses (grams)" : 50,
+			"soft cheese (grams)" : 100,
+			"water (liter)" : 1,
+			"soft drinks" : 0.5,
+			"fruit salad" : 0.15,
+			"dessert" : 0.20
+		},
+		"equipment":[
+			"plates",
+			"cups",
+			"table wear",
+			"spices"
+		]		
+	}
+}

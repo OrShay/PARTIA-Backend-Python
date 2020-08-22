@@ -1,0 +1,55 @@
+{
+	"event_pin_code": <int>,
+	"user_name": <unique_user_name>,
+	"query_answers": {"VEGETARIAN" : <bool>,
+					"VEGAN": <bool>, 
+					"KOSHER": <bool>, 
+					"GLUTEN_FREE": <bool>, 
+					"LACTOSE_FREE": <bool>, 
+					"FISH": <bool>,
+					"BEER":  <bool>, 
+					"RED_WINE": <bool>, 
+					"WHITE_WINE": <bool>,
+					"VODKA_GLASS": <bool>, 
+					"VODKA_SHOT": <bool>,
+					"WHISKEY_GLASS": <bool>, 
+					"WHISKEY_SHOT": <bool>,
+					"TEQUILA_GLASS": <bool>, 
+					"TEQUILA_SHOT": <bool>,
+					"CAMPARI_GLASS": <bool>,
+					"CAMPARI_SHOT": <bool>,
+					"ARAK_GLASS": <bool>, 
+					"ARAK_SHOT": <bool>,
+					"GIN_GLASS": <bool>, 
+					"GIN_SHOT": <bool>
+										
+	}
+}
+
+{
+	"event_pin_code": 1,
+	"user_name": "Or",
+	"query_answers": {"VEGETARIAN" : true,
+					"VEGAN": false, 
+					"KOSHER": false, 
+					"GLUTEN_FREE": false, 
+					"LACTOSE_FREE": false, 
+					"FISH": false,
+					"BEER":  true, 
+					"RED_WINE": true, 
+					"WHITE_WINE": true,
+					"VODKA_GLASS": true, 
+					"VODKA_SHOT": true,
+					"WHISKEY_GLASS": true, 
+					"WHISKEY_SHOT": false,
+					"TEQUILA_GLASS": false,
+					"TEQUILA_SHOT": false,
+					"CAMPARI_GLASS": false,
+					"CAMPARI_SHOT": false,
+					"ARAK_GLASS": false, 
+					"ARAK_SHOT": true,
+					"GIN_GLASS": false, 
+					"GIN_SHOT": false
+										
+	}
+}
