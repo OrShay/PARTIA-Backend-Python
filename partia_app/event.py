@@ -5,7 +5,7 @@ from flask_request_validator import (
 )
 from marshmallow import ValidationError
 from flask import Blueprint, request
-from app import validator, responses
+from partia_app import validator, responses
 from app_engine import AppEngine
 
 event_blueprint = Blueprint('event_blueprint', __name__)

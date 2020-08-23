@@ -1,7 +1,7 @@
-from app.rides import rides_blueprint
-from app.event import event_blueprint
-from app.equipment import equipment_blueprint
-from app.participant import participant_blueprint
+from partia_app.rides import rides_blueprint
+from partia_app.event import event_blueprint
+from partia_app.equipment import equipment_blueprint
+from partia_app.participant import participant_blueprint
 from flask import Flask, request
 
 

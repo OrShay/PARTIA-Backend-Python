@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from app import validator, responses
+from partia_app import validator, responses
 from app_engine import AppEngine
 
 rides_blueprint = Blueprint('rides_blueprint', __name__)

@@ -4,7 +4,7 @@ class Participant:
         This class represent a participant of the event
  """
     def __init__(self, name: str, query_answers: dict):
-        self._username = name    # as shown in app
+        self._username = name    # as shown in partia_app
         self._query_answers = query_answers
         self._investment = float()   # how much spent so far
 

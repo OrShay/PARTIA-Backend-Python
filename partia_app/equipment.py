@@ -1,6 +1,6 @@
 from flask_request_validator import Param, GET, validate_params
 from flask import Blueprint, request
-from app import validator, responses
+from partia_app import validator, responses
 from app_engine import AppEngine
 from item import ItemEncoder
 import json
