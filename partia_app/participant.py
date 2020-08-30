@@ -1,7 +1,11 @@
 from flask import Blueprint, request
 from partia_app import validator, responses
 from app_engine import AppEngine
-
+from flask_request_validator import (
+    Param,
+    GET,
+    validate_params
+)
 participant_blueprint = Blueprint('participant_blueprint', __name__)
 
 
@@ -19,3 +23,15 @@ def add_new_participant():
     else:
         return responses.response_invalid_user_name()
 
+
+@participant_blueprint.route('/participant/check-unique', methods=['GET'])
+@validate_params(Param('pin_code', GET, int, required=True),
+                 Param('user_name', GET, str, required=True))
+def check_participant_user_name(pin_code, user_name):
+    event = AppEngine.get_event_by_pin_code(pin_code)
+    if not event:
+        return responses.response_invalid_event()
+    if user_name in event.participants_dict.keys():
+        return responses.response_invalid_user_name()
+    else:
+        return responses.response_200({"message": "unique username"})
