@@ -17,7 +17,8 @@ def create_new_event():
     if errors:
         return responses.response_invalid_request(errors)
     pin_code = AppEngine.create_new_event(request.json)
-    return responses.response_200({"pin_code": pin_code})
+    event = AppEngine.get_event_by_pin_code(pin_code)
+    return responses.response_200(event.get_event_info())
 
 
 @event_blueprint.route('/event', methods=['GET'])
@@ -26,11 +27,7 @@ def get_event_info(pin_code):
     event = AppEngine.get_event_by_pin_code(pin_code)
     if not event:
         return responses.response_invalid_event()
-    return responses.response_200({"name": event.name,
-                                   "location": event.location,
-                                   "info": event.info,
-                                   "date": event.date_time,
-                                   "state": event.state})
+    return responses.response_200(event.get_event_info())
 
 
 @event_blueprint.route('/event/food_statistics', methods=['GET'])
@@ -63,4 +60,3 @@ def set_kind_of_meal():
         return responses.response_200(request_dict)
     except ValidationError as errors:
         return responses.response_invalid_request(errors.messages)
-

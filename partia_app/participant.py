@@ -19,7 +19,7 @@ def add_new_participant():
     if not event:
         return responses.response_invalid_event()
     if event.add_participant(request.json["user_name"], request.json["query_answers"]):
-        return responses.response_200({"pin_code": event_pin_code})
+        return responses.response_200((event.get_event_info()))
     else:
         return responses.response_invalid_user_name()
 
@@ -35,3 +35,16 @@ def check_participant_user_name(pin_code, user_name):
         return responses.response_invalid_user_name()
     else:
         return responses.response_200({"message": "unique username"})
+
+
+@participant_blueprint.route('/participant/is-owner', methods=['GET'])
+@validate_params(Param('pin_code', GET, int, required=True),
+                 Param('user_name', GET, str, required=True))
+def is_participant_event_owner(pin_code, user_name):
+    event = AppEngine.get_event_by_pin_code(pin_code)
+    if not event:
+        return responses.response_invalid_event()
+    if user_name not in event.participants_dict.keys():
+        return responses.response_invalid_user_name()
+    is_owner = event.is_event_owner(user_name)
+    return responses.response_200({"is_owner": is_owner})

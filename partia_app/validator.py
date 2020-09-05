@@ -3,6 +3,7 @@ from marshmallow import Schema, fields, validate
 
 
 class EventScheme(Schema):
+    owner = fields.Str(required=True)
     name = fields.Str(required=True)
     location = fields.Str(required=True)
     info = fields.Str(required=True)
@@ -60,3 +61,28 @@ class RideScheme(Schema):
     source = fields.Str(required=True)
     available_seats = fields.Int(required=True)
     departure_time = fields.DateTime(required=True, allow_none=True)
+
+
+class SetItemPrice(Schema):
+    pin_code = fields.Int(required=True)
+    title = fields.Str(required=True)
+    price = fields.Float(required=True)
+    user_name = fields.Str(required=True)
+
+
+class AddItemInCharge(Schema):
+    pin_code = fields.Int(required=True)
+    title = fields.Str(required=True)
+    amount = fields.Int(required=True)
+    user_name = fields.Str(required=True)
+
+
+class Item(Schema):
+    pin_code = fields.Int(required=True)
+    title = fields.Str(required=True)
+    amount = fields.Int(required=True)
+
+
+class DeleteItem(Schema):
+    pin_code = fields.Int(required=True)
+    title = fields.Str(required=True)

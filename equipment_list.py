@@ -41,8 +41,6 @@ class EquipmentList:
             item_to_update.add_in_charge(participant_in_charge, amount)
         except KeyError as ex:
             raise NameError("There is no item that name")
-        except ValueError:
-            raise
 
     def remove_in_charge(self, item_name, participant_in_charge):
         try:
@@ -71,5 +69,10 @@ class EquipmentList:
         except ValueError:
             raise
 
-
-
+    def remove_item(self, item_name):
+        if item_name not in self.items.keys():
+            raise ValueError("There is no item that name")
+        item = self.items[item_name]
+        price = item.total_price
+        self.items.pop(item_name)
+        return price

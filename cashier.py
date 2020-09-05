@@ -11,6 +11,10 @@ class Cashier:
     def add_money_spent(self, value_spent):
         self._money_spent += value_spent
 
+    def decrease_money_spent(self, money_value):
+        self._money_spent -= money_value
+        self._money_spent = 0 if self._money_spent < 0 else self._money_spent
+
     def split_payment(self, participants_dict: {str: Participant}):
         """
         This function gets a participants dict, and creates a payment dict,

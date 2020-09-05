@@ -39,6 +39,7 @@ class Event:
             self.date_time = parser.parse(event_info_dict["date"])
             self.meal_organization = event_info_dict["meal_organization"]
             self.beverage_organization = event_info_dict["beverage_organization"]
+            self.owner = event_info_dict["owner"]
         except KeyError as e:
             print(f"Error while trying to create new event. {e}")
             raise
@@ -107,3 +108,30 @@ class Event:
         if self.beverage_organization:
             generate_alcohol_items_dict(self.equipment_list, len(self.participants_dict),
                                         self.participants_preferences_sum)
+
+    def is_event_owner(self, user_name: str):
+        """
+        This function returns true iff the user_name is the owner of the event
+        """
+        return self.owner == user_name
+
+    def get_event_info(self):
+        return {"pin_code": self._pin_code,
+                "owner": self.owner,
+                "name": self.name,
+                "location": self.location,
+                "info": self.info,
+                "date": self.date_time,
+                "state": self.state}
+
+    def set_item_price(self, title, price, who_paid):
+        participant = self.participants_dict.get(who_paid)
+        if not participant:
+            raise ValueError('Invalid username')
+        self.get_equipment_list()
+        self.equipment_list.set_item_price(title, price, participant)
+
+    def remove_item(self, title):
+        self.get_equipment_list()
+        price = self.equipment_list.remove_item(title)
+        self.cashier.decrease_money_spent(price)

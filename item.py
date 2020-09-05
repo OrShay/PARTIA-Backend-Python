@@ -8,7 +8,7 @@ class Item:
         self.amount = amount
         self.left_to_bring = amount
         self.total_price = 0
-        self.in_charge = {}     # Participant: float
+        self.in_charge = {}     # ParticipantUsername: float
 
     def set_price(self, price: float, who_paid: Participant):
         self.total_price += price
@@ -49,13 +49,14 @@ class Item:
     def set_amount(self, new_amount):
         # increase amount
         if self.amount <= new_amount:
+            self.left_to_bring += new_amount - self.amount
             self.amount = new_amount
         # decrease amount
         elif self.amount - self.left_to_bring <= new_amount:
             self.left_to_bring -= self.amount - new_amount
             self.amount = new_amount
         else:
-            raise ValueError("There are participants in charge of the more than the new amount")
+            raise ValueError("There are participants in charge of more than the new amount")
 
 
 class ItemEncoder(JSONEncoder):
@@ -69,7 +70,7 @@ class ItemEncoder(JSONEncoder):
                     "in_charge": None
                     }
             if len(item.in_charge.keys()) > 0:
-                json["in_charge"] = {participant.get_username(): amount for participant, amount in item.in_charge.items()}
+                json["in_charge"] = {user_name: amount for user_name, amount in item.in_charge.items()}
             return json
 
         else:
