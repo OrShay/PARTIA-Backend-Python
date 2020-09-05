@@ -9,7 +9,7 @@ import json
 equipment_blueprint = Blueprint('equipment_blueprint', __name__)
 
 
-def get_equipment_list_response(items_dict):
+def _get_equipment_list_response(items_dict):
     """
     The function creates a dictionary with all items data
     """
@@ -27,7 +27,7 @@ def get_equipment_list(pin_code):
         return responses.response_invalid_event()
     items_dict = event.get_equipment_list()
     try:
-        json_response = get_equipment_list_response(items_dict)
+        json_response = _get_equipment_list_response(items_dict)
     except Exception as e:
         return responses.response_internal_error(e)
     return responses.response_200(json_response)
