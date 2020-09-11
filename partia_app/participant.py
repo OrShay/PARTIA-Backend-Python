@@ -51,7 +51,7 @@ def is_participant_event_owner(pin_code, user_name):
     return responses.response_200({"is_owner": is_owner})
 
 
-@participant_blueprint.route('/participant/events', methods=['GET'])
+@participant_blueprint.route('/participant/events', methods=['POST'])
 def get_participant_events():
     user_email = request.json.get('userEmail', None)
     if not user_email:
