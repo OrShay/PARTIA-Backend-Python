@@ -86,3 +86,8 @@ class Item(Schema):
 class DeleteItem(Schema):
     pin_code = fields.Int(required=True)
     title = fields.Str(required=True)
+
+
+class Login(Schema):
+    userEmail = fields.Str(required=True)
+    password = fields.Str(required=True)

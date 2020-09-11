@@ -4,6 +4,7 @@ from event import Event
 
 class AppEngine:
     events_dict = {}
+    users_dict = {}
 
     @staticmethod
     def create_new_event(event_creation_info: json):
@@ -29,3 +30,18 @@ class AppEngine:
         """
         event = AppEngine.events_dict.get(pin_code, None)
         return event
+
+    @staticmethod
+    def is_logged_user(user_name, password):
+        if user_name in AppEngine.users_dict.keys():
+            if AppEngine.users_dict[user_name] == password:
+                return True
+            else:
+                return False
+
+    @staticmethod
+    def signup_new_user(username, password):
+        if username in AppEngine.users_dict.keys():
+            return False
+        AppEngine.users_dict[username] = password
+        return True
