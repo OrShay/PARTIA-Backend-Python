@@ -20,12 +20,13 @@ def _get_equipment_list_response(items_dict):
 
 
 @equipment_blueprint.route('/equipment', methods=['GET'])
-@validate_params(Param('pin_code', GET, int, required=True))
-def get_equipment_list(pin_code):
+@validate_params(Param('pin_code', GET, int, required=True),
+                 Param('regenerate', GET, bool, required=False))
+def get_equipment_list(pin_code, regenerate):
     event = AppEngine.get_event_by_pin_code(pin_code)
     if not event:
         return responses.response_invalid_event()
-    items_dict = event.get_equipment_list()
+    items_dict = event.get_equipment_list(regenerate)
     try:
         json_response = _get_equipment_list_response(items_dict)
     except Exception as e:

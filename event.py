@@ -94,8 +94,8 @@ class Event:
             self._add_participant_preference_to_sum(preference_answers)
             return True
 
-    def get_equipment_list(self):
-        if self.state == EventState.GENERATING.name:
+    def get_equipment_list(self, regenerate: bool):
+        if self.state == EventState.GENERATING.name or regenerate:
             self._generate_equipment_list()
             self.state = EventState.IN_PROGRESS
         return self.equipment_list.items
