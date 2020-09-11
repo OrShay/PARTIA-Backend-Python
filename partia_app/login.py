@@ -21,7 +21,7 @@ def login_to_app():
     if not username:
         return responses.response_invalid_request(password)
     if AppEngine.is_logged_user(username, password):
-        return responses.response_200({"message": "Valid credentials"})
+        return responses.response_200(request.json)
     return responses.response_wrong_credentials()
 
 
@@ -31,6 +31,6 @@ def sign_up():
     if not username:
         return responses.response_invalid_request(password)
     if AppEngine.signup_new_user(username, password):
-        return responses.response_200({"message": "user was added successfully"})
+        return responses.response_200(request.json)
     else:
         return responses.response_invalid_user_name()
