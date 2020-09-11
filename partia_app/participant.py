@@ -6,6 +6,7 @@ from flask_request_validator import (
     GET,
     validate_params
 )
+
 participant_blueprint = Blueprint('participant_blueprint', __name__)
 
 
@@ -48,3 +49,12 @@ def is_participant_event_owner(pin_code, user_name):
         return responses.response_invalid_user_name()
     is_owner = event.is_event_owner(user_name)
     return responses.response_200({"is_owner": is_owner})
+
+
+@participant_blueprint.route('/participant/events', methods=['GET'])
+@validate_params(Param('userEmail', GET, str, required=True))
+def get_participant_events(userEmail):
+    if userEmail not in AppEngine.users_dict.keys():
+        return responses.response_invalid_user_name()
+    events_dict = AppEngine.get_user_events(userEmail)
+    return responses.response_200(events_dict)

@@ -45,3 +45,19 @@ class AppEngine:
             return False
         AppEngine.users_dict[username] = password
         return True
+
+    @staticmethod
+    def get_user_events(username):
+        events_dict = {
+            "owner": [],
+            "participates": []
+        }
+        if username not in AppEngine.users_dict.keys():
+            raise NameError
+        for event in AppEngine.events_dict.values():
+            if event.is_event_participant(username):
+                if event.is_event_owner(username):
+                    events_dict["owner"].append(event.get_event_info())
+                else:
+                    events_dict["participates"].append(event.get_event_info())
+        return events_dict

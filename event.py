@@ -109,6 +109,9 @@ class Event:
             generate_alcohol_items_dict(self.equipment_list, len(self.participants_dict),
                                         self.participants_preferences_sum)
 
+    def is_event_participant(self, username):
+        return username in self.participants_dict.keys()
+
     def is_event_owner(self, user_name: str):
         """
         This function returns true iff the user_name is the owner of the event

@@ -10,15 +10,15 @@ def response_200(response_json: dict):
 
 
 def response_invalid_event():
-    return _send_response({"error_message": "Invalid Event Pin Code"}, 404)
+    return _send_response({"error_message": "Invalid Event Pin Code"}, 400)
 
 
 def response_invalid_user_name():
-    return _send_response({"error_message": "Invalid User Name"}, 404)
+    return _send_response({"error_message": "Invalid User Name"}, 400)
 
 
 def response_invalid_request(errors: dict):
-    return _send_response({"invalid_fields": errors}, 404)
+    return _send_response({"invalid_fields": errors}, 400)
 
 
 def response_internal_error(exception):
@@ -26,4 +26,4 @@ def response_internal_error(exception):
 
 
 def response_wrong_credentials():
-    return _send_response({"message": "invalid username or password"}, 404)
+    return _send_response({"message": "invalid username or password"}, 400)
