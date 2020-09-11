@@ -17,7 +17,7 @@ app.register_blueprint(participant_blueprint)
 app.register_blueprint(cashier_blueprint)
 app.register_blueprint(login_blueprint)
 
-logging.basicConfig(filename='server.log', level=logging.DEBUG)
+logging.basicConfig(filename='/home/ec2-user/PARTIA-Backend-Python/server.log', level=logging.DEBUG)
 
 
 @app.route('/', methods=['GET'])
