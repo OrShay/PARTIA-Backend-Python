@@ -3,6 +3,7 @@ from partia_app.event import event_blueprint
 from partia_app.equipment import equipment_blueprint
 from partia_app.participant import participant_blueprint
 from partia_app.login import login_blueprint
+from partia_app.cashier import cashier_blueprint
 from flask import Flask, request
 from partia_app.responses import response_200
 
@@ -12,6 +13,7 @@ app.register_blueprint(rides_blueprint)
 app.register_blueprint(event_blueprint)
 app.register_blueprint(equipment_blueprint)
 app.register_blueprint(participant_blueprint)
+app.register_blueprint(cashier_blueprint)
 app.register_blueprint(login_blueprint)
 
 

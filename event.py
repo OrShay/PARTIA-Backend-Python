@@ -97,7 +97,7 @@ class Event:
             self._add_participant_preference_to_sum(preference_answers)
             return True
 
-    def get_equipment_list(self, regenerate: bool):
+    def get_equipment_list(self, regenerate=False):
         if self.state == EventState.GENERATING.name or regenerate:
             self._generate_equipment_list()
             self.state = EventState.IN_PROGRESS
@@ -136,8 +136,12 @@ class Event:
             raise ValueError('Invalid username')
         self.get_equipment_list()
         self.equipment_list.set_item_price(title, price, participant)
+        self.cashier.add_money_spent(price)
 
     def remove_item(self, title):
         self.get_equipment_list()
         price = self.equipment_list.remove_item(title)
         self.cashier.decrease_money_spent(price)
+
+    def split_investment(self):
+        return self.cashier.split_payment(self.participants_dict)

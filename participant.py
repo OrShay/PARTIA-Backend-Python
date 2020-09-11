@@ -1,12 +1,12 @@
 class Participant:
-
     """
         This class represent a participant of the event
  """
+
     def __init__(self, name: str, query_answers: dict):
-        self._username = name    # as shown in partia_app
+        self._username = name  # as shown in partia_app
         self._query_answers = query_answers
-        self._investment = float()   # how much spent so far
+        self._investment = float()  # how much spent so far
 
     def set_answers(self, answers: dict):
         self._query_answers.update(answers)
@@ -22,3 +22,6 @@ class Participant:
 
     def get_username(self):
         return self._username
+
+    def get_investment(self):
+        return self._investment
