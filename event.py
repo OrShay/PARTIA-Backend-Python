@@ -29,7 +29,8 @@ class Event:
     def get_pin_code(self):
         return self._pin_code
 
-    # def set_date
+    def set_date(self, date):
+        self.date_time = date
 
     def _create_event_from_dict(self, event_info_dict: dict):
         try:

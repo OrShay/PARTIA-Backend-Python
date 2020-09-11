@@ -48,6 +48,19 @@ def get_beverage_statistics(pin_code):
     return responses.response_200(event.get_beverages_statistics())
 
 
+@event_blueprint.route('/event/set-date', methods=['PUT'])
+def set_date():
+    try:
+        request_dict = validator.EventDate().load(request.json)
+        pin_code = request_dict["pin_code"]
+        event = AppEngine.get_event_by_pin_code(pin_code)
+        if not event:
+            return responses.response_invalid_event()
+        event.set_date(request_dict["date"])
+        return responses.response_200(request_dict)
+    except ValidationError as errors:
+        return responses.response_invalid_request(errors.messages)
+
 @event_blueprint.route('/event/kind_of_meal', methods=['POST'])
 def set_kind_of_meal():
     try:

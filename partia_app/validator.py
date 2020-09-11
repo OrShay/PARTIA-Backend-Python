@@ -55,6 +55,11 @@ class KindOfMEalScheme(Schema):
                               required=True)
 
 
+class EventDate(Schema):
+    pin_code = fields.Int(required=True)
+    date = fields.DateTime(required=True)
+
+
 class RideScheme(Schema):
     pin_code = fields.Int(required=True)
     driver_user_name = fields.Str(required=True)
