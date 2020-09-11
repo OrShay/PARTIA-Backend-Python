@@ -1,3 +1,4 @@
+import logging
 from partia_app.rides import rides_blueprint
 from partia_app.event import event_blueprint
 from partia_app.equipment import equipment_blueprint
@@ -16,9 +17,12 @@ app.register_blueprint(participant_blueprint)
 app.register_blueprint(cashier_blueprint)
 app.register_blueprint(login_blueprint)
 
+logging.basicConfig(filename='server.log', level=logging.DEBUG)
+
 
 @app.route('/', methods=['GET'])
 def is_alive():
+    app.logger.info("Server is UP!")
     return response_200({"message": "The server is up Queen! :)"})
 
 
