@@ -1,3 +1,5 @@
+from json import JSONEncoder
+import json
 from dateutil import parser
 from rides_board import RidesBoard
 from participant import Participant
@@ -5,6 +7,31 @@ from cashier import Cashier
 from equipment_list import EquipmentList
 from generator import generate_equipment_list, generate_food_items_dict, generate_alcohol_items_dict
 from constants import EventState, Beverages, KindOfMeal, KindOfEvent, FoodPreference
+
+
+class EventEncoder(JSONEncoder):
+
+    def default(self, event):
+        if isinstance(event, Event):
+            json_res = {
+                "name": event.name,
+                "location": event.location,
+                "info": event.info,
+                "environment": event.environment,
+                "kind_of_event": event.kind_of_event,
+                "date": str(event.date_time),
+                "meal_organization": event.meal_organization,
+                "beverage_organization": event.beverage_organization,
+                "state": event.state,
+                "owner": event.owner,
+                "pin_code": event._pin_code
+            }
+            return json_res
+
+        else:
+            # call base class implementation which takes care of
+            # raising exceptions for unsupported types
+            return JSONEncoder.default(self, event)
 
 
 class Event:
@@ -115,20 +142,14 @@ class Event:
     def is_event_participant(self, username):
         return username in self.participants_dict.keys()
 
+    def get_event_info(self):
+        return json.loads(EventEncoder().encode(self))
+
     def is_event_owner(self, user_name: str):
         """
         This function returns true iff the user_name is the owner of the event
         """
         return self.owner == user_name
-
-    def get_event_info(self):
-        return {"pin_code": self._pin_code,
-                "owner": self.owner,
-                "name": self.name,
-                "location": self.location,
-                "info": self.info,
-                "date": self.date_time,
-                "state": self.state}
 
     def set_item_price(self, title, price, who_paid):
         participant = self.participants_dict.get(who_paid)
