@@ -53,10 +53,14 @@ def is_participant_event_owner(pin_code, user_name):
 
 @participant_blueprint.route('/participant/events', methods=['POST'])
 def get_participant_events():
-    user_email = request.json.get('userEmail', None)
-    if not user_email:
-        return responses.response_invalid_request({"message": "UserEmil is required"})
-    if user_email not in AppEngine.users_dict.keys():
-        return responses.response_invalid_user_name()
-    events_dict = AppEngine.get_user_events(user_email)
-    return responses.response_200(events_dict)
+    try:
+        user_email = request.json.get('userEmail', None)
+        if not user_email:
+            return responses.response_invalid_request({"message": "UserEmil is required"})
+        if user_email not in AppEngine.users_dict.keys():
+            return responses.response_invalid_user_name()
+        events_dict = AppEngine.get_user_events(user_email)
+        return responses.response_200(events_dict)
+    except Exception as ex:
+        print("Error!!")
+        return responses.response_internal_error(ex)
