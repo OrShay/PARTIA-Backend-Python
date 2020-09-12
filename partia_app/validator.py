@@ -60,6 +60,11 @@ class EventDate(Schema):
     date = fields.DateTime(required=True)
 
 
+class EventInfo(Schema):
+    pin_code = fields.Int(required=True)
+    info = fields.Str(required=True)
+
+
 class RideScheme(Schema):
     pin_code = fields.Int(required=True)
     driver_user_name = fields.Str(required=True)

@@ -166,3 +166,6 @@ class Event:
 
     def split_investment(self):
         return self.cashier.split_payment(self.participants_dict)
+
+    def set_info(self, info):
+        self.info = info

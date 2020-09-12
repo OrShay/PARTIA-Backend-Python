@@ -61,6 +61,7 @@ def set_date():
     except ValidationError as errors:
         return responses.response_invalid_request(errors.messages)
 
+
 @event_blueprint.route('/event/kind_of_meal', methods=['POST'])
 def set_kind_of_meal():
     try:
@@ -73,3 +74,27 @@ def set_kind_of_meal():
         return responses.response_200(request_dict)
     except ValidationError as errors:
         return responses.response_invalid_request(errors.messages)
+
+
+@event_blueprint.route('/event/set-info', methods=['PUT'])
+def set_info():
+    try:
+        request_dict = validator.EventInfo().load(request.json)
+        pin_code = request_dict["pin_code"]
+        event = AppEngine.get_event_by_pin_code(pin_code)
+        if not event:
+            return responses.response_invalid_event()
+        event.set_info(request_dict["info"])
+        return responses.response_200(event.get_event_info())
+    except ValidationError as errors:
+        return responses.response_invalid_request(errors.messages)
+
+
+@event_blueprint.route('/event/participants', methods=['GET'])
+@validate_params(Param('pin_code', GET, int, required=True))
+def get_all_participants(pin_code):
+    event = AppEngine.get_event_by_pin_code(pin_code)
+    if not event:
+        return responses.response_invalid_event()
+    participants_list = list(event.participants_dict.keys())
+    return responses.response_200({"participants": participants_list})
