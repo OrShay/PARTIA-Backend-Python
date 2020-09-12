@@ -24,6 +24,13 @@ path = os.path.join(str(Path(dir_path).parent.parent), "server.log")
 logging.basicConfig(filename=path, level=logging.DEBUG)
 
 
+@app.before_request
+def log_request_info():
+    app.logger.debug(f'Got request url: {request.base_url}')
+    app.logger.debug(f'Request Body: {request.json} ')
+    app.logger.debug(f'Request Values: {list(request.values.items())} ')
+
+
 @app.route('/', methods=['GET'])
 def is_alive():
     app.logger.info("Server is UP!")
