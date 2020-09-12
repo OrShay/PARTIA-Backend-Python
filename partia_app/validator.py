@@ -60,6 +60,13 @@ class EventDate(Schema):
     date = fields.DateTime(required=True)
 
 
+class MessageSchema(Schema):
+    pin_code = fields.Int(required=True)
+    title = fields.Str(required=True)
+    text = fields.Str(required=True)
+    author = fields.Str(required=True)
+
+
 class EventInfo(Schema):
     pin_code = fields.Int(required=True)
     info = fields.Str(required=True)

@@ -6,6 +6,7 @@ from participant import Participant
 from cashier import Cashier
 from equipment_list import EquipmentList
 from generator import generate_equipment_list, generate_food_items_dict, generate_alcohol_items_dict
+from messages_board import MessagesBoard
 from constants import EventState, Beverages, KindOfMeal, KindOfEvent, FoodPreference
 
 
@@ -48,6 +49,7 @@ class Event:
         self.participants_dict = {}
         self.rides_board = RidesBoard()
         self.cashier = Cashier()
+        self.messages = MessagesBoard()
         self.equipment_list = EquipmentList()
         self.kind_Of_Meal = None
         self.participants_preferences_sum = {preference: 0 for preference in
@@ -169,3 +171,9 @@ class Event:
 
     def set_info(self, info):
         self.info = info
+
+    def add_message(self, title, text, author):
+        self.messages.add_message(title, text, author)
+
+    def get_messages(self):
+        return self.messages.get_all_messages()
