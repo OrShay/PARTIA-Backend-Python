@@ -23,7 +23,8 @@ app.register_blueprint(messages_blueprint)
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
 path = os.path.join(str(Path(dir_path).parent.parent), "server.log")
-logging.basicConfig(filename=path, level=logging.DEBUG)
+logging.basicConfig(filename=path, level=logging.DEBUG,
+                    format='[%(asctime)s] %(levelname)s in %(filename)s: %(message)s')
 
 
 @app.before_request

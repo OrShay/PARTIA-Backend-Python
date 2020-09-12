@@ -14,7 +14,7 @@ def response_invalid_event():
 
 
 def response_invalid_user_name():
-    return _send_response({"error_message": "Invalid User Name"}, 400)
+    return _send_response({"error_message": "Invalid User Name"}, 403)
 
 
 def response_invalid_request(errors: dict):

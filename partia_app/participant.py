@@ -35,7 +35,7 @@ def check_participant_user_name(pin_code, user_name):
     if user_name in event.participants_dict.keys():
         return responses.response_invalid_user_name()
     else:
-        return responses.response_200({"message": "unique username"})
+        return responses.response_200(event.get_info())
 
 
 @participant_blueprint.route('/participant/is-owner', methods=['GET'])
