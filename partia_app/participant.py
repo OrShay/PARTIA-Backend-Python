@@ -58,7 +58,7 @@ def get_participant_events():
     app.app.logger.debug(f"Got json: {request.json} ")
     user_email = request.json.get('userEmail', None)
     if not user_email:
-        return responses.response_invalid_request({"message": "UserEmil is required"})
+        return responses.response_invalid_request({"message": "UserEmail is required"})
     if user_email not in AppEngine.users_dict.keys():
         return responses.response_invalid_user_name()
     events_dict = AppEngine.get_user_events(user_email)

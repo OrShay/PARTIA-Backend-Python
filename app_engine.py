@@ -1,4 +1,6 @@
 import json
+from datetime import datetime
+from dateutil import parser
 from event import Event
 
 
@@ -48,6 +50,7 @@ class AppEngine:
 
     @staticmethod
     def get_user_events(username):
+        now = datetime.now()
         events_dict = {
             "owner": [],
             "participates": []
@@ -55,7 +58,7 @@ class AppEngine:
         if username not in AppEngine.users_dict.keys():
             raise NameError
         for event in AppEngine.events_dict.values():
-            if event.is_event_participant(username):
+            if event.is_event_participant(username) and event.date_time > now:
                 if event.is_event_owner(username):
                     events_dict["owner"].append(event.get_event_info())
                 else:

@@ -1,4 +1,6 @@
+from pathlib import Path
 import logging
+import os
 from partia_app.rides import rides_blueprint
 from partia_app.event import event_blueprint
 from partia_app.equipment import equipment_blueprint
@@ -17,7 +19,9 @@ app.register_blueprint(participant_blueprint)
 app.register_blueprint(cashier_blueprint)
 app.register_blueprint(login_blueprint)
 
-#logging.basicConfig(filename='/home/ec2-user/server.log', level=logging.DEBUG)
+dir_path = os.path.dirname(os.path.realpath(__file__))
+path = os.path.join(str(Path(dir_path).parent.parent), "server.log")
+logging.basicConfig(filename=path, level=logging.DEBUG)
 
 
 @app.route('/', methods=['GET'])
