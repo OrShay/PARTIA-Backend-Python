@@ -8,7 +8,7 @@ class Item:
         self.amount = amount
         self.left_to_bring = amount
         self.total_price = 0
-        self.in_charge = {}     # ParticipantUsername: float
+        self.in_charge = {}  # ParticipantUsername: float
 
     def set_price(self, price: float, who_paid: Participant):
         self.total_price += price
@@ -63,11 +63,13 @@ class ItemEncoder(JSONEncoder):
 
     def default(self, item):
         if isinstance(item, Item):
-            json = {"title": item.title,
-                    "amount": item.amount,
-                    "left_to_bring": item.left_to_bring,
-                    "total_price": item.total_price,
-                    "in_charge": None
+            json = {"itemName": item.title,
+                    "itemDetails": {
+                        "title": item.title,
+                        "amount": item.amount,
+                        "left_to_bring": item.left_to_bring,
+                        "total_price": item.total_price,
+                        "in_charge": None}
                     }
             if len(item.in_charge.keys()) > 0:
                 json["in_charge"] = {user_name: amount for user_name, amount in item.in_charge.items()}

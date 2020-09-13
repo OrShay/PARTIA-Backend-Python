@@ -13,9 +13,10 @@ def _get_equipment_list_response(items_dict):
     """
     The function creates a dictionary with all items data
     """
-    json_response = {}
+    equipment_list = []
     for key, val in items_dict.items():
-        json_response[key] = json.loads(ItemEncoder().encode(val))
+        equipment_list.append(json.loads(ItemEncoder().encode(val)))
+    json_response = {"equipment": equipment_list}
     return json_response
 
 

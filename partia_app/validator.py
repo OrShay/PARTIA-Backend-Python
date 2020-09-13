@@ -24,7 +24,6 @@ class QuerySchema(Schema):
     KOSHER = fields.Bool(required=True)
     GLUTEN_FREE = fields.Bool(required=True)
     LACTOSE_FREE = fields.Bool(required=True)
-    FISH = fields.Bool(required=True)
     BEER = fields.Bool(required=True)
     RED_WINE = fields.Bool(required=True)
     WHITE_WINE = fields.Bool(required=True)

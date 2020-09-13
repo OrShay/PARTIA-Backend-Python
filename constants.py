@@ -24,7 +24,6 @@ class FoodPreference(Enum):
     KOSHER = 3
     GLUTEN_FREE = 4
     LACTOSE_FREE = 5
-    FISH = 6
 
 
 class Beverages(Enum):
