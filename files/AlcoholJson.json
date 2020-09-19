@@ -7,7 +7,7 @@
              "Whiskey", "Campari", "Arak"]
 	},
 	"Bottles": {
-		"Beer" : 2,
+		"BEER" : 2,
 		"RED_WINE" :  0.25,
 		"WHITE_WINE" : 0.25
 	},

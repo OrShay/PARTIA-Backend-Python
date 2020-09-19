@@ -55,14 +55,14 @@ def _add_alcohol_shots_and_glasses_items_by_ratio(equipment_list: EquipmentList,
     shot_ratio = drinks_json["shot_amount"]
     glass_ratio = drinks_json["glass_amount"]
     for drink in drinks_list:
-        amount = preferences_sum[f"{drink.upper()}_SHOTS"] * shot_ratio
+        amount = preferences_sum[f"{drink.upper()}_CHASER"] * shot_ratio
         amount += preferences_sum[f"{drink.upper()}_GLASS"] * glass_ratio
         equipment_list.add_new_item(drink, amount)
 
 
 def _add_alcohol_bottles_items_by_ratio(equipment_list: EquipmentList, alcohol_info, preference_sum):
     for drink in alcohol_info:
-        amount = preference_sum[drink] * alcohol_info[drink]
+        amount = preference_sum[f"{drink}_GLASS"] * alcohol_info[drink]
         equipment_list.add_new_item(drink, amount)
 
 

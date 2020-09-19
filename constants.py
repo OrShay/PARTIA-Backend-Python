@@ -22,26 +22,33 @@ class FoodPreference(Enum):
     VEGETARIAN = 1
     VEGAN = 2
     KOSHER = 3
-    GLUTEN_FREE = 4
-    LACTOSE_FREE = 5
 
 
-class Beverages(Enum):
-    BEER = 1
-    RED_WINE = 2
-    WHITE_WINE = 3
+class Allergies(Enum):
+    PEANUTS = 1
+    GLUTEN = 4
+    LACTOSE = 5
+
+
+class BeveragesGlass(Enum):
+    BEER_GLASS = 1
+    RED_WINE_GLASS = 2
+    WHITE_WINE_GLASS = 3
     VODKA_GLASS = 4
-    VODKA_SHOT = 5
     WHISKEY_GLASS = 6
-    WHISKEY_SHOT = 7
     TEQUILA_GLASS = 8
-    TEQUILA_SHOT = 9
     CAMPARI_GLASS = 10
-    CAMPARI_SHOT = 11
     ARAK_GLASS = 12
-    ARAK_SHOT = 13
     GIN_GLASS = 14
-    GIN_SHOT = 15
+
+
+class BeveragesChaser(Enum):
+    VODKA_CHASER = 5
+    WHISKEY_CHASER = 7
+    TEQUILA_CHASER = 9
+    CAMPARI_CHASER = 11
+    ARAK_CHASER = 13
+    GIN_CHASER = 15
 
 
 class KindOfMeal(Enum):

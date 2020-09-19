@@ -7,7 +7,7 @@ from cashier import Cashier
 from equipment_list import EquipmentList
 from generator import generate_equipment_list, generate_food_items_dict, generate_alcohol_items_dict
 from messages_board import MessagesBoard
-from constants import EventState, Beverages, KindOfMeal, KindOfEvent, FoodPreference
+from constants import EventState, BeveragesGlass, BeveragesChaser, KindOfMeal, Allergies, FoodPreference
 
 
 class EventEncoder(JSONEncoder):
@@ -52,8 +52,12 @@ class Event:
         self.messages = MessagesBoard()
         self.equipment_list = EquipmentList()
         self.kind_Of_Meal = None
-        self.participants_preferences_sum = {preference: 0 for preference in
-                                             set(FoodPreference.__members__.keys()).union(Beverages.__members__.keys())}
+        self.participants_preferences_sum = {preference: 0 for preference in self._get_all_preferences()}
+
+    @staticmethod
+    def _get_all_preferences():
+        return set(FoodPreference.__members__.keys()).union(BeveragesGlass.__members__.keys()).union(
+            BeveragesChaser.__members__.keys()).union(Allergies.__members__.keys())
 
     def get_pin_code(self):
         return self._pin_code
@@ -76,13 +80,13 @@ class Event:
             print(f"Error while trying to create new event. {e}")
             raise
 
-    def _add_participant_preference_to_sum(self, participant_preferences):
+    def _add_participant_preference_to_sum(self, participant_preferences: list):
         """
         This function adds a participant's preferences to the total of preferences of the event
         :return:
         """
-        for preference in self.participants_preferences_sum.keys():
-            if participant_preferences[preference]:
+        for preference in participant_preferences:
+            if preference:
                 self.participants_preferences_sum[preference] += 1
 
     def set_kind_of_meal(self, kind_of_meal: str):
@@ -114,16 +118,17 @@ class Event:
         """
         num_of_participant = len(self.participants_dict)
         beverages_statistics = {preference: self.participants_preferences_sum[preference] / num_of_participant
-                                for preference in Beverages.__members__.keys()}
+                                for preference in
+                                set(BeveragesGlass.__members__.keys()).union(BeveragesChaser.__members__.keys())}
         return beverages_statistics
 
-    def add_participant(self, user_name: str, preference_answers: dict):
+    def add_participant(self, user_name: str, food_preference, allergies, glass_preference, chaser_preference):
         if user_name in self.participants_dict.keys():
             return False
         else:
-            new_participant = Participant(user_name, preference_answers)
+            new_participant = Participant(user_name, food_preference, allergies, glass_preference, chaser_preference)
             self.participants_dict[user_name] = new_participant
-            self._add_participant_preference_to_sum(preference_answers)
+            self._add_participant_preference_to_sum([food_preference, allergies, glass_preference, chaser_preference])
             return True
 
     def get_equipment_list(self, regenerate=False):
@@ -177,3 +182,6 @@ class Event:
 
     def get_messages(self):
         return self.messages.get_all_messages()
+
+
+

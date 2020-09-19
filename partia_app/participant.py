@@ -15,11 +15,16 @@ def add_new_participant():
     errors = validator.ParticipantScheme().validate(request.json)
     if errors:
         return responses.response_invalid_request(errors)
-    event_pin_code = request.json["event_pin_code"]
+    event_pin_code = request.json["pin_code"]
     event = AppEngine.get_event_by_pin_code(event_pin_code)
     if not event:
         return responses.response_invalid_event()
-    if event.add_participant(request.json["user_name"], request.json["query_answers"]):
+    user_name = request.json['userEmail']
+    meal_preference = request.json['mealPreference']
+    glass_preference = request.json['glassPreference']
+    chaser_preference = request.json['chaserPreference']
+    allergies = request.json['allergies']
+    if event.add_participant(user_name, meal_preference, allergies, glass_preference, chaser_preference):
         return responses.response_200((event.get_event_info()))
     else:
         return responses.response_invalid_user_name()

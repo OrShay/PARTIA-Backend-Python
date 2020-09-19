@@ -42,9 +42,15 @@ class QuerySchema(Schema):
 
 
 class ParticipantScheme(Schema):
-    event_pin_code = fields.Int(required=True)
-    user_name = fields.Str(required=True)
-    query_answers = fields.Nested(QuerySchema, required=True)
+    pin_code = fields.Int(required=True)
+    userEmail = fields.Str(required=True)
+    mealPreference = fields.Str(required=True,
+                                validate=validate.OneOf(constants.FoodPreference.__members__.keys()),
+                                allow_none=True)
+    allergies = fields.Str(required=True, validate=validate.OneOf(constants.Allergies.__members__.keys()),
+                           allow_none=True)
+    glassPreference = fields.Str(required=True, validate=validate.OneOf(constants.BeveragesGlass.__members__.keys()))
+    chaserPreference = fields.Str(required=True, validate=validate.OneOf(constants.BeveragesChaser.__members__.keys()))
 
 
 class KindOfMEalScheme(Schema):

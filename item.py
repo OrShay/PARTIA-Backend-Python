@@ -63,14 +63,13 @@ class ItemEncoder(JSONEncoder):
 
     def default(self, item):
         if isinstance(item, Item):
-            json = {"itemName": item.title,
-                    "itemDetails": {
-                        "title": item.title,
-                        "amount": item.amount,
-                        "left_to_bring": item.left_to_bring,
-                        "total_price": item.total_price,
-                        "in_charge": None}
-                    }
+            json = {"itemDetails": {
+                "title": item.title,
+                "amount": item.amount,
+                "left_to_bring": item.left_to_bring,
+                "total_price": item.total_price,
+                "in_charge": None}
+            }
             if len(item.in_charge.keys()) > 0:
                 json["in_charge"] = {user_name: amount for user_name, amount in item.in_charge.items()}
             return json
