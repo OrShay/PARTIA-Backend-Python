@@ -1,5 +1,5 @@
-from participant import Participant
-from ride import Ride
+from participant.participant import Participant
+from rides.ride import Ride
 
 
 class RidesBoard:

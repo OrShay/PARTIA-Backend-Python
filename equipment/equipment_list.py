@@ -1,5 +1,5 @@
-from item import Item
-from participant import Participant
+from equipment.item import Item
+from participant.participant import Participant
 
 
 class EquipmentList:

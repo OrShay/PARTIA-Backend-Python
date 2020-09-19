@@ -1,4 +1,4 @@
-import constants
+from utils import constants
 from marshmallow import Schema, fields, validate
 
 

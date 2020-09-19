@@ -1,4 +1,4 @@
-from participant import Participant
+from participant.participant import Participant
 
 
 class Cashier:

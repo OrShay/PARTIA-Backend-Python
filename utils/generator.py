@@ -1,7 +1,7 @@
 import json
 import math
-from equipment_list import EquipmentList
-from constants import *
+from equipment.equipment_list import EquipmentList
+from utils.constants import *
 
 
 def _add_simple_items_to_dict(equipment_list: EquipmentList, new_items_info: list):

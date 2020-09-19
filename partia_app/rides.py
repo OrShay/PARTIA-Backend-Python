@@ -2,7 +2,7 @@ import json
 
 from flask import Blueprint, request
 
-from ride import RideEncoder
+from rides.ride import RideEncoder
 from partia_app import validator, responses
 from app_engine import AppEngine
 from flask_request_validator import (

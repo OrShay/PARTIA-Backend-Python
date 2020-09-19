@@ -1,6 +1,6 @@
 import json
 
-from message import Message, MessageEncoder
+from chat.message import Message, MessageEncoder
 
 
 class MessagesBoard:

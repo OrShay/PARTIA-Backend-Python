@@ -2,8 +2,7 @@ from flask_request_validator import Param, GET, validate_params
 from flask import Blueprint, request
 from partia_app import validator, responses
 from app_engine import AppEngine
-from item import ItemEncoder
-from event import Event
+from equipment.item import ItemEncoder
 import json
 
 equipment_blueprint = Blueprint('equipment_blueprint', __name__)

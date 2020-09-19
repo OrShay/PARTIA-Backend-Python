@@ -1,7 +1,7 @@
 import json
 from datetime import datetime
 from dateutil import parser
-from event import Event
+from event.event import Event
 
 
 class AppEngine:

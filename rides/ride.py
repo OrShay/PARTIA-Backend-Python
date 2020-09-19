@@ -1,5 +1,5 @@
 from json import JSONEncoder
-from participant import Participant
+from participant.participant import Participant
 from datetime import datetime
 
 

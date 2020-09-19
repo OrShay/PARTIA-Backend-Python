@@ -1,13 +1,13 @@
 from json import JSONEncoder
 import json
 from dateutil import parser
-from rides_board import RidesBoard
-from participant import Participant
-from cashier import Cashier
-from equipment_list import EquipmentList
-from generator import generate_equipment_list, generate_food_items_dict, generate_alcohol_items_dict
-from messages_board import MessagesBoard
-from constants import EventState, BeveragesGlass, BeveragesChaser, KindOfMeal, Allergies, FoodPreference
+from rides.rides_board import RidesBoard
+from participant.participant import Participant
+from cashier.cashier import Cashier
+from equipment.equipment_list import EquipmentList
+from utils.generator import generate_equipment_list, generate_food_items_dict, generate_alcohol_items_dict
+from chat.messages_board import MessagesBoard
+from utils.constants import EventState, BeveragesGlass, BeveragesChaser, KindOfMeal, Allergies, FoodPreference
 
 
 class EventEncoder(JSONEncoder):
@@ -138,6 +138,7 @@ class Event:
         return self.equipment_list.items
 
     def _generate_equipment_list(self):
+        self.equipment_list = EquipmentList()
         generate_equipment_list(self.equipment_list, self.kind_of_event, self.environment)
         if self.meal_organization:
             generate_food_items_dict(self.equipment_list, self.kind_Of_Meal, len(self.participants_dict),
