@@ -73,8 +73,8 @@ class Event:
             self.environment = event_info_dict["environment"]
             self.kind_of_event = event_info_dict["kind_of_event"]
             self.date_time = parser.parse(event_info_dict["date"])
-            self.meal_organization = event_info_dict["meal_organization"]
-            self.beverage_organization = event_info_dict["beverage_organization"]
+            self.meal_organization = event_info_dict.get("meal_organization", None)
+            self.beverage_organization = event_info_dict.get("beverage_organization", None)
             self.owner = event_info_dict["owner"]
         except KeyError as e:
             print(f"Error while trying to create new event. {e}")
@@ -183,6 +183,3 @@ class Event:
 
     def get_messages(self):
         return self.messages.get_all_messages()
-
-
-

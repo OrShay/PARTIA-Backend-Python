@@ -12,10 +12,10 @@ class EventScheme(Schema):
     date = fields.Str(required=True)
     meal_organization = fields.Str(validate=validate.OneOf(constants.Organization.__members__.keys()),
                                    allow_none=True,
-                                   required=True)
+                                   required=False)
     beverage_organization = fields.Str(validate=validate.OneOf(constants.Organization.__members__.keys()),
                                        allow_none=True,
-                                       required=True)
+                                       required=False)
 
 
 class QuerySchema(Schema):
