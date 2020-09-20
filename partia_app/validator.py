@@ -9,7 +9,7 @@ class EventScheme(Schema):
     info = fields.Str(required=True)
     environment = fields.Str(validate=validate.OneOf(constants.Environment.__members__.keys()), required=True)
     kind_of_event = fields.Str(validate=validate.OneOf(constants.KindOfEvent.__members__.keys()), required=True)
-    date = fields.DateTime(required=True)
+    date = fields.Str(required=True)
     meal_organization = fields.Str(validate=validate.OneOf(constants.Organization.__members__.keys()),
                                    allow_none=True,
                                    required=True)
