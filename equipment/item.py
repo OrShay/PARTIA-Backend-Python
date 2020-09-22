@@ -21,11 +21,14 @@ class Item:
         :param amount: amount of item the participant gets
         :return: Raises exception if there is no need to bring as much
         """
-        if self.in_charge:
-            raise ValueError("There is no need to bring this item")
+        if not participant_in_charge:
+            self.remove_in_charge(list(self.in_charge.keys())[0])
         else:
-            self.left_to_bring = 0
-            self.in_charge[participant_in_charge] = self.amount
+            if self.in_charge:
+                raise ValueError("There is no need to bring this item")
+            else:
+                self.left_to_bring = 0
+                self.in_charge[participant_in_charge] = self.amount
 
     def remove_in_charge(self, participant_to_remove):
         if participant_to_remove in self.in_charge.keys():
