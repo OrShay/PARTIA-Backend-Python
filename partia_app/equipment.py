@@ -86,7 +86,7 @@ def add_item():
         return responses.response_invalid_request({"message": str(ex)})
 
 
-@equipment_blueprint.route('/equipment/Item', methods=['DELETE'])
+@equipment_blueprint.route('/equipment/Item/delete', methods=['PUT'])
 def remove_item():
     errors = validator.DeleteItem().validate(request.json)
     if errors:

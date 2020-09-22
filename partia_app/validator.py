@@ -104,6 +104,13 @@ class Item(Schema):
     amount = fields.Int(required=True)
 
 
+class AddItem(Schema):
+    pin_code = fields.Int(required=True)
+    title = fields.Str(required=True)
+    amount = fields.Int(required=True)
+    incharge = fields.Str(required=True)
+
+
 class DeleteItem(Schema):
     pin_code = fields.Int(required=True)
     title = fields.Str(required=True)
