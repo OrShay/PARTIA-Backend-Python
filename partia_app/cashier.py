@@ -28,8 +28,11 @@ def get_participant_owes(pin_code, userEmail):
     event = AppEngine.get_event_by_pin_code(pin_code)
     if not event:
         return responses.response_invalid_event()
-    owes = event.split_investment()[userEmail]
-    return responses.response_200({"owes": owes})
+    try:
+        owes = event.split_investment()[userEmail]
+        return responses.response_200({"owes": owes})
+    except KeyError:
+        return responses.response_invalid_user_name()
 
 
 @cashier_blueprint.route('/cashier/split', methods=['GET'])
