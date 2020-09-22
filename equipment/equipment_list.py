@@ -35,10 +35,10 @@ class EquipmentList:
         except KeyError:
             raise NameError("There is no item that name")
 
-    def add_in_charge(self, item_name, participant_in_charge, amount):
+    def add_in_charge(self, item_name, participant_in_charge):
         try:
             item_to_update = self.items[item_name]
-            item_to_update.add_in_charge(participant_in_charge, amount)
+            item_to_update.add_in_charge(participant_in_charge)
         except KeyError as ex:
             raise NameError("There is no item that name")
 

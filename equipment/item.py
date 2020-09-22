@@ -14,18 +14,18 @@ class Item:
         self.total_price += price
         who_paid.increase_investment(price)
 
-    def add_in_charge(self, participant_in_charge, amount):
+    def add_in_charge(self, participant_in_charge):
         """
         this function gets participant to add to "in-charge" list, and amount of products she's bringing
         :param participant_in_charge: The participant which gets the item
         :param amount: amount of item the participant gets
         :return: Raises exception if there is no need to bring as much
         """
-        if self.left_to_bring < amount:
+        if self.in_charge:
             raise ValueError("There is no need to bring this item")
         else:
-            self.left_to_bring -= amount
-            self.in_charge[participant_in_charge] = amount
+            self.left_to_bring = 0
+            self.in_charge[participant_in_charge] = self.amount
 
     def remove_in_charge(self, participant_to_remove):
         if participant_to_remove in self.in_charge.keys():
@@ -71,7 +71,7 @@ class ItemEncoder(JSONEncoder):
                 "in_charge": None}
             }
             if len(item.in_charge.keys()) > 0:
-                json["in_charge"] = {user_name: amount for user_name, amount in item.in_charge.items()}
+                json['itemDetails']["in_charge"] = {user_name: amount for user_name, amount in item.in_charge.items()}
             return json
 
         else:

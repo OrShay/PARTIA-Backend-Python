@@ -61,10 +61,9 @@ def add_item_in_charge():
     if not event:
         return responses.response_invalid_event()
     title = request.json['title']
-    amount = request.json['amount']
     in_charge = request.json['user_name']
     try:
-        event.equipment_list.add_in_charge(title, in_charge, amount)
+        event.equipment_list.add_in_charge(title, in_charge)
         return responses.response_200(json.loads(ItemEncoder().encode(event.get_equipment_list()[title])))
     except Exception as ex:
         return responses.response_invalid_request({"message": str(ex)})

@@ -95,7 +95,6 @@ class SetItemPrice(Schema):
 class AddItemInCharge(Schema):
     pin_code = fields.Int(required=True)
     title = fields.Str(required=True)
-    amount = fields.Int(required=True)
     user_name = fields.Str(required=True)
 
 
