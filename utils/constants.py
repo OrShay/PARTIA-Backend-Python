@@ -26,8 +26,8 @@ class FoodPreference(Enum):
 
 class Allergies(Enum):
     PEANUTS = 1
-    GLUTEN = 4
-    LACTOSE = 5
+    GLUTEN_FREE = 4
+    LACTOSE_FREE = 5
 
 
 class BeveragesGlass(Enum):
