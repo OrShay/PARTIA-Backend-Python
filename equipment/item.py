@@ -74,7 +74,7 @@ class ItemEncoder(JSONEncoder):
                 "in_charge": None}
             }
             if len(item.in_charge.keys()) > 0:
-                json['itemDetails']["in_charge"] = {user_name: amount for user_name, amount in item.in_charge.items()}
+                json['itemDetails']["in_charge"] = list(item.in_charge.keys())[0]
             return json
 
         else:
