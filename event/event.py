@@ -134,7 +134,7 @@ class Event:
     def get_equipment_list(self, regenerate=False):
         if self.state == EventState.GENERATING.name or regenerate:
             self._generate_equipment_list()
-            self.state = EventState.IN_PROGRESS
+            self.state = EventState.IN_PROGRESS.name
         return self.equipment_list.items
 
     def _generate_equipment_list(self):
