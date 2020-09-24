@@ -32,7 +32,7 @@ def add_new_participant():
 
 @participant_blueprint.route('/participant/check-unique', methods=['GET'])
 @validate_params(Param('pin_code', GET, int, required=True),
-                 Param('user_name', GET, str, required=True))
+                 Param('userEmail', GET, str, required=True))
 def check_participant_user_name(pin_code, user_name):
     event = AppEngine.get_event_by_pin_code(pin_code)
     if not event:
